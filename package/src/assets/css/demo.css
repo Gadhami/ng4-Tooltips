@@ -1,0 +1,31 @@
+*,
+*::after,
+*::before {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Overpass Mono', monospace;
+	color: #666;
+	background: #1d1f1e;
+}
+
+a {
+	text-decoration: none;
+	color: #6fbb95;
+	outline: none;
+}
+
+a:hover,
+a:focus {
+	color: #fff;
+}
+
+.hidden {
+	position: absolute;
+	overflow: hidden;
+	width: 0;
+	height: 0;
+	pointer-events: none;
+}

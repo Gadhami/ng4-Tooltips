@@ -1,0 +1,79 @@
+/* Top Navigation Style */
+.codrops-links {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	white-space: nowrap;
+}
+
+.codrops-links::after {
+	content: '';
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	width: 1px;
+	height: 60%;
+	background: #b0adad;
+	transform: rotate3d(0, 0, 1, 22.5deg);
+}
+
+.codrops-icon {
+	display: inline-block;
+	margin: 0.25em 0 0.25em 0.25em;
+	padding: 0.35em 0 0.35em 0.35em;
+}
+
+.codrops-icon:first-child {
+	margin: 0.25em 0.25em 0.25em 0;
+	padding: 0.35em 0.35em 0.35em 0;
+}
+
+/* Icons */
+.icon {
+	display: block;
+	width: 1.5em;
+	height: 1.5em;
+	margin: 0 auto;
+	fill: currentColor;
+}
+
+/* Header */
+.codrops-header {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	width: 100%;
+	padding: 1.5em 1.5em 4em;
+	text-align: left;
+}
+
+.title {
+	font-size: 1.15em;
+	margin: 0;
+	padding: 0 0.5em;
+}
+
+.github {
+	font-size: 0.85em;
+	font-weight: bold;
+}
+
+.tagline {
+	font-size: 0.85em;
+	width: 100%;
+	margin: 0 0 0.5em;
+	color: #989898;
+}
+
+.tagline::before {
+	content: '> ';
+}
+
+@media screen and (max-width: 40em) {
+	.codrops-header {
+		display: block;
+		text-align: center;
+	}
+}

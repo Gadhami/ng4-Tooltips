@@ -1,0 +1,29 @@
+.related {
+	text-align: center;
+	font-size: 0.85em;
+	padding: 3em 1em 6em;
+}
+
+.media-item {
+	display: inline-block;
+	padding: 1em;
+	vertical-align: top;
+	transition: color 0.3s;
+}
+
+img {
+	max-width: 100%;
+	opacity: 0.8;
+	transition: opacity 0.3s;
+}
+
+.media-item:hover img,
+.media-item:focus img {
+	opacity: 1;
+}
+
+.title {
+	font-size: 1em;
+	margin: 0;
+	padding: 0.5em;
+}

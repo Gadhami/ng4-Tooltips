@@ -1,0 +1,25 @@
+<div class="tooltip" [ngClass]="tooltip?.cssClass" [attr.data-type]="tooltip?.type">
+
+    <div #trigger class="trigger" role="tooltip" [attr.aria-describedby]="tooltip?.id">
+        <span #triggerSpan class="trigger-text">{{tooltip?.text}}</span>
+    </div>
+
+    <div #base class="base">
+        <div #deco class="deco" *ngIf="tooltip?.type === 'walda'"></div>
+
+        <svg #svg class="shape" width="100%" height="100%" viewBox="0 0 400 300" *ngIf="tooltip?.svgPath">
+            <path #svgPath *ngFor="let path of tooltip?.svgPath" [ngClass]="path.cssClass" [attr.d]="path.d" />
+        </svg>
+
+        <div #contentDiv class="content" [id]="tooltip?.id">
+            <!-- Tooltip Content -->
+            <span #letters class="letters" *ngIf="tooltip?.type === 'walda'">
+                {{tooltip?.content}}
+            </span>
+
+            <!-- <ng-container *ngComponentOutlet="tooltip?.content"></ng-container> -->
+            {{tooltip?.content}}
+        </div>
+    </div>
+
+</div>
