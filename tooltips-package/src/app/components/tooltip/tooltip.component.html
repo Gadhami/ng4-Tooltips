@@ -1,7 +1,10 @@
 <div class="tooltip" [ngClass]="tooltip?.cssClass" [attr.data-type]="tooltip?.type">
 
-    <div #trigger class="trigger" role="tooltip" [attr.aria-describedby]="tooltip?.id">
-        <span #triggerSpan class="trigger-text">{{tooltip?.text}}</span>
+    <div #trigger class="trigger" role="tooltip" [attr.aria-describedby]="tooltip?.id" tabindex="-1"
+        (click)="showTooltip(true)" (blur)="hideTooltip(true)"
+        (mouseenter)="showTooltip(false)" (mouseleave)="hideTooltip(false)">
+
+            <span #triggerSpan class="trigger-text">{{tooltip?.text}}</span>
     </div>
 
     <div #base class="base">
@@ -14,11 +17,12 @@
         <div #contentDiv class="content" [id]="tooltip?.id">
             <!-- Tooltip Content -->
             <span #letters class="letters" *ngIf="tooltip?.type === 'walda'">
-                {{tooltip?.content}}
+                <!-- {{ tooltip?.content | safe }} -->
+                {{ tooltip?.content }}
             </span>
 
-            <!-- <ng-container *ngComponentOutlet="tooltip?.content"></ng-container> -->
-            {{tooltip?.content}}
+            <ng-container *ngComponentOutlet="tooltip?.component"></ng-container>
+            <span *ngIf="tooltip?.type !== 'walda'">{{tooltip?.content}}</span>
         </div>
     </div>
 

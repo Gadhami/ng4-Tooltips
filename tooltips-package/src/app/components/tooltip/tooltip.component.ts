@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, Renderer2, Input } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, Input, HostListener } from '@angular/core';
 
 import { ITooltip } from 'app/interfaces/tooltip';
 
@@ -12,12 +12,14 @@ import charming from 'assets/js/charming.min';
     templateUrl: './tooltip.component.html',
     styleUrls  : ['./tooltip.component.css']
 })
-export class TooltipComponent implements OnInit
+export class TooltipComponent implements AfterViewInit
 {
-    @Input() tooltip    : ITooltip;
+    @Input() tooltip     : ITooltip;
 
-    private mouseTimeout: any;
-    private isVisible   = false;
+    private mouseTimeout : any;
+    private isVisible    = false;
+
+    @Input() showOnHover = false;
 
     @ViewChild('trigger')     trigger    : ElementRef;
     @ViewChild('triggerSpan') triggerSpan: ElementRef;
@@ -26,20 +28,16 @@ export class TooltipComponent implements OnInit
     @ViewChild('letters')     letters    : ElementRef;
     @ViewChild('svg')         svg        : ElementRef;
     @ViewChild('svgPath')     svgPath    : ElementRef;
+    // @ViewChildren('svgPath')  svgPath    : QueryList<ElementRef>;
+
     @ViewChild('contentDiv')  contentDiv : ElementRef;
 
-    // Event Listeners
-    mouseEnter: any;
-    mouseLeave: any;
-    touchStart: any;
-    touchEnd  : any;
-
     // ========================================================================
-    constructor(private renderer: Renderer2)
+    constructor()
     { }
 
     // ========================================================================
-    ngOnInit()
+    ngAfterViewInit()
     {
         // if (this.svg)
         // {
@@ -48,7 +46,7 @@ export class TooltipComponent implements OnInit
         //                         this.svg.nativeElement.querySelector('path');
         // }
 
-        if (this.tooltip.type === 'walda')   // if (this.letters)
+        if (this.letters)  // if (this.tooltip.type === 'walda')
         {
             // Create spans for each letter
             charming(this.letters.nativeElement);
@@ -56,12 +54,6 @@ export class TooltipComponent implements OnInit
             // Redefine content
             this.contentDiv = this.letters;
         }
-
-        // Add Event Listeners
-        this.mouseEnter = this.renderer.listen(this.trigger.nativeElement, 'mouseenter', this.onMouseEnter.bind(this));
-        this.mouseLeave = this.renderer.listen(this.trigger.nativeElement, 'mouseleave', this.onMouseLeave.bind(this));
-        this.touchStart = this.renderer.listen(this.trigger.nativeElement, 'touchstart', this.onMouseEnter.bind(this));
-        this.touchEnd   = this.renderer.listen(this.trigger.nativeElement, 'touchend',   this.onMouseLeave.bind(this));
     }
 
     // ========================================================================
@@ -111,31 +103,32 @@ export class TooltipComponent implements OnInit
     }
 
     // ========================================================================
-    OnDestroy()
-    {
-        // Simply calling the event listeners will remove them
-        this.mouseEnter();
-        this.mouseLeave();
-        this.touchStart();
-        this.touchEnd();
-    }
-
-    // ========================================================================
+    @HostListener('touchstart', ['$event'])
     onMouseEnter()
     {
-        // Show Tooltip
-
-        this.mouseTimeout  = setTimeout(() =>
+        if (this.showOnHover)
         {
-            this.isVisible = true;
-            this.animate('in');
-        }, 75);
+            this.showTooltip(false);
+        }
     }
 
     // ========================================================================
+    @HostListener('touchend', ['$event'])
     onMouseLeave()
     {
-        // Hide Tooltip
+        if (this.showOnHover)
+        {
+            this.hideTooltip(false);
+        }
+    }
+
+    // ========================================================================
+    hideTooltip(isClick: boolean)
+    {
+        if (isClick === this.showOnHover)
+        {
+            return;
+        }
 
         clearTimeout(this.mouseTimeout);
         if (this.isVisible)
@@ -143,6 +136,21 @@ export class TooltipComponent implements OnInit
             this.isVisible = false;
             this.animate('out');
         }
+    }
+
+    // ========================================================================
+    showTooltip(isClick: boolean)
+    {
+        if (isClick === this.showOnHover)
+        {
+            return;
+        }
+
+        this.mouseTimeout  = setTimeout(() =>
+        {
+            this.isVisible = true;
+            this.animate('in');
+        }, 75);
     }
     // ========================================================================
 }

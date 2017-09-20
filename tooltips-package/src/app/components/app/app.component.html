@@ -12,13 +12,16 @@
 <main>
     <app-top-nav></app-top-nav>
 
+    <input type="checkbox" name="cb-hover" id="cb-hover" [(ngModel)]="showOnHover" />
+    <label for="cb-hover">Show On Hover? (True = tooltips shown on hover | False = Click to show tooltip)</label>
+
     <!-- Tooltips -->
     <div class="content">
         <div class="grid">
 
             <div class="item" *ngFor="let tooltip of tooltips">
                 <app-tooltip
-                    [tooltip]="tooltip"
+                    [tooltip]="tooltip" [showOnHover]="showOnHover"
                 ></app-tooltip>
             </div>
 

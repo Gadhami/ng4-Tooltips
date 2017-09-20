@@ -8,7 +8,9 @@ import { ITooltip          } from 'app/interfaces/tooltip';
 })
 export class AppComponent implements OnInit
 {
-    tooltips: ITooltip[];
+    tooltips     : ITooltip[];
+
+    showOnHover  = true;
 
     // ========================================================================
     ngOnInit()

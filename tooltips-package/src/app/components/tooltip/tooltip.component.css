@@ -3,11 +3,14 @@
 	display: inline-block;
 }
 
-.trigger {
+.trigger
+{
 	cursor: pointer;
-	position: relative;
-}
+    position: relative;
 
+    /* Remove outline when clicking on item to show tooltip */
+    outline: none;
+}
 .trigger-text {
 	display: block;
 	padding: 0.85em;
