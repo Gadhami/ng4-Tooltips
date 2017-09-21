@@ -2,10 +2,10 @@ import { Component, AfterViewInit, ElementRef, ViewChild, Input, HostListener } 
 
 import { ITooltip } from 'app/interfaces/tooltip';
 
-import * as config from 'app/consts/animation-effects';
+import * as anime    from 'assets/js/anime.min';
+import * as charming from 'assets/js/charming.min';
 
-import anime    from 'assets/js/anime.min';
-import charming from 'assets/js/charming.min';
+import * as config   from 'app/consts/animation-effects';
 
 @Component({
     selector   : 'app-tooltip',

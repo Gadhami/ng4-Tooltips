@@ -1,3 +1,7 @@
+**`NB. Although functional, please note that this is an alpha / pre-beta release - Do NOT use in production`**
+
+---
+
 # ng4-Tooltips
 
 * This is an angular 4+ port of the fantastic [javascript Tooltip Animations demo](https://tympanus.net/codrops/2017/05/31/playful-little-tooltip-ideas/) by [tympanus.net](https://tympanus.net/codrops/)
@@ -20,9 +24,9 @@ The most important changes (beside the native angular 4 library / npm package fo
 
 # Demo & Screenshots
 
-* [Demo is here](https://ng4-tooltips.github.io/demo/)
+* [Demo](https://ng4-tooltips.github.io/demo/) (Yet to be uploaded)
 
-* [Screenshot](https://ng4-tooltips.github.io/demo/assets/images/demo.gif)
+* [Screenshot](https://ng4-tooltips.github.io/demo/assets/images/demo.gif) (Yet to be uploaded)
 
 
 # How to use

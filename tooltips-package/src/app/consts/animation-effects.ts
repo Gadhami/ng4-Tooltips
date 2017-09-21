@@ -1,4 +1,4 @@
-import anime from 'assets/js/anime';  // import anime from 'assets/js/anime.min';
+import * as anime from 'assets/js/anime.min';
 
 export const animationConfig =
 {
